@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE log4j:configuration SYSTEM "http://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/xml/doc-files/log4j.dtd">
+
+<log4j:configuration
+	xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+	<appender name="consoleAppender"
+		class="org.apache.log4j.ConsoleAppender">
+		<param name="Threshold" value="DEBUG" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="%d{MMM dd HH:mm:ss} 
+ %-5p  [%c{1}] %m %n" />
+		</layout>
+	</appender>
+
+	<appender name="fileAppender"
+		class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="Threshold" value="TRACE" />
+		<param name="File" value="C:/application/logs/arquillian.log" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd" />
+		<param name="Append" value="true" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{MMM dd HH:mm:ss} %-5p  [%c{1}] %m %n" />
+		</layout>
+	</appender>
+
+
+	<logger name="org.arquillian.example.arquillian_tutorial2"
+		additivity="false">
+		<level value="DEBUG" />
+		<appender-ref ref="fileAppender" />
+		<appender-ref ref="consoleAppender" />
+	</logger>
+	
+	<logger name="org.jboss.msc"
+		additivity="false">
+		<level value="DEBUG" />
+		<appender-ref ref="fileAppender" />
+		<appender-ref ref="consoleAppender" />
+	</logger>
+
+	<root>
+		<level value="INFO" />
+	</root>
+
+</log4j:configuration>
